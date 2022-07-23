@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:riverpod_hive_task1_updated/locator.dart';
-import 'package:riverpod_hive_task1_updated/providers/router_provider.dart';
-import 'package:riverpod_hive_task1_updated/screens/home_page.dart';
+import 'package:riverpod_hive_task1_updated/provider/providers.dart';
 
-void main() async {      
+void main() async {
   await Hive.initFlutter();
   await Hive.openBox('iconBox');
   setup();
-  runApp(ProviderScope(child: const MyApp()));     // 1
+  runApp(
+   const ProviderScope(
+      child: MyApp(),
+    ),
+  ); // 1
 }
 
 class MyApp extends ConsumerWidget {

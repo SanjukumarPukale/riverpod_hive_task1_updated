@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_hive_task1_updated/locator.dart';
-import 'package:riverpod_hive_task1_updated/providers/iconProvider.dart';
-import 'package:riverpod_hive_task1_updated/screens/colo_icon_list.dart';
-import 'package:riverpod_hive_task1_updated/services/provider_services.dart';
+import 'package:riverpod_hive_task1_updated/provider/providers.dart';
+import 'package:riverpod_hive_task1_updated/view/colo_icon_list.dart';
+
 
 class HomePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final iconColor = ref.watch(colorStateProvider); 
-    final sliderValue = ref.watch(sizeStateProvider); 
-    final iconSelect = ref.watch(iconSelectProvider); 
+    // final iconColor = ref.watch(colorStateProvider); 
+    // final sliderValue = ref.watch(sizeStateProvider); 
+    // final iconSelect = ref.watch(iconSelectProvider); 
+    
+    final watchIconState = ref.watch(iconProvider);
+    final readIconState = ref.read(iconProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(
@@ -23,9 +26,9 @@ class HomePage extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Icon(
-              locator.get<ColorIcon>().icons[iconSelect],   // v
-              color: locator.get<ColorIcon>().colors[iconColor],
-              size: sliderValue,
+              locator.get<ColorIcon>().icons[watchIconState.iconIndex],   // v
+              color: locator.get<ColorIcon>().colors[watchIconState.colorIndex],
+              size: watchIconState.sliderVal,
             ),
             SizedBox(
               height: 50,
@@ -46,7 +49,8 @@ class HomePage extends ConsumerWidget {
                           shape: BoxShape.circle, color: locator.get<ColorIcon>().colors[index]),
                     ),
                     onTap: () {
-                      locator.get<ProviderService>().selectColorIndex(index, ref);
+                      // locator.get<ProviderService>().selectColorIndex(index, ref);
+                      readIconState.colorSelected(index);
                     },
                   );
                 },
@@ -57,13 +61,14 @@ class HomePage extends ConsumerWidget {
             ),
             Slider(
               activeColor: Colors.indigoAccent,
-              value: sliderValue,    
+              value: watchIconState.sliderVal,    
               min: 100.0,
               max: 200.0,
               divisions: 100,
-              label: sliderValue.toString(),
+              label: watchIconState.sliderVal.toString(),
               onChanged: (value) {
-                locator.get<ProviderService>().changeSlider(value, ref); 
+                // locator.get<ProviderService>().changeSlider(value, ref); 
+                readIconState.sliderChanged(value);
               },
             ),
 

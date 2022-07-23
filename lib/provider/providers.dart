@@ -1,9 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:riverpod_hive_task1_updated/screens/home_page.dart';
-import 'package:riverpod_hive_task1_updated/screens/setting_page.dart';
-  
+import 'package:riverpod_hive_task1_updated/Controller/icon_provider_controller.dart';
+import 'package:riverpod_hive_task1_updated/view/home_page.dart';
+import 'package:riverpod_hive_task1_updated/view/setting_page.dart';
+
+// Icon Provider
+final iconProvider = StateNotifierProvider<IconProviderNotifier, IconProvider>(
+    (ref) => IconProviderNotifier());
+
+// Router Provider
   final routerProvider = Provider<GoRouter>((ref) {
   return GoRouter(
       debugLogDiagnostics: true,

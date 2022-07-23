@@ -19,4 +19,16 @@ class DBService {
     box.put('icon', index);
   }
 
+  int getColor() {
+    return box.get('color') ?? 0;
+  }
+
+  double getSize() {
+    return box.get('size') ?? 100.0;
+  }
+
+  int getIcon() {
+    return box.get('icon') ?? 0;
+  }
+
 }
