@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:riverpod_hive_task1_updated/model/icon_model.dart';
 
 class DBService {
   Box box;
@@ -7,28 +10,12 @@ class DBService {
     required this.box,
   });
 
-  void saveColor(int index) {
-    box.put('color', index);
+  void saveIconModel(IconModel iconModel ) {
+    box.put('iconModel', iconModel);
   }
 
-  void saveSize(double value) {
-    box.put('size', value);
-  }
-
-  void saveIcon(int index) {
-    box.put('icon', index);
-  }
-
-  int getColor() {
-    return box.get('color') ?? 0;
-  }
-
-  double getSize() {
-    return box.get('size') ?? 100.0;
-  }
-
-  int getIcon() {
-    return box.get('icon') ?? 0;
+  IconModel getIconModel() {
+    return box.get('iconModel') ?? IconModel(iconVal: 0, colorVal: 0, sliderVal: 100.0);
   }
 
 }

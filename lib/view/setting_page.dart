@@ -4,9 +4,6 @@ import 'package:riverpod_hive_task1_updated/locator.dart';
 import 'package:riverpod_hive_task1_updated/provider/providers.dart';
 import 'package:riverpod_hive_task1_updated/view/colo_icon_list.dart';
 
-
-
-
 class SettingPage extends ConsumerWidget {
   const SettingPage({Key? key}) : super(key: key);
 

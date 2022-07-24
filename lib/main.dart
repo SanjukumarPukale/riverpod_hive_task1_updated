@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:riverpod_hive_task1_updated/locator.dart';
+import 'package:riverpod_hive_task1_updated/model/icon_model.dart';
 import 'package:riverpod_hive_task1_updated/provider/providers.dart';
+
+// const String iconBoxName = 'iconBox'; 
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox('iconBox');
+  Hive.registerAdapter(IconModelAdapter());
+  await Hive.openBox<IconModel>('iconModelBox');
   setup();
   runApp(
    const ProviderScope(

@@ -8,8 +8,6 @@ class ColorIcon {
   Colors.green,
   Colors.yellow,
   Colors.orange,
-  Colors.red,
-  Colors.black,
 ];
 
 List<IconData> icons = [
